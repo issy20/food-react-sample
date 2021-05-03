@@ -50,14 +50,15 @@ export const App = () => {
   const [categories, setCategories] = useState(initialState.categories);
   const [filterQuery, setFilterQuery] = useState({});
 
-  const onClickFoodAdd = () => {};
+  // const onClickFoodAdd = () => {};
+
+  console.log("a");
 
   const filteredFood = useMemo(() => {
-    let tmpFoods = foods;
-
+    // let tmpFoods = foods;
     const filterTitle = filterQuery.title && filterQuery.title.toLowerCase();
 
-    tmpFoods = tmpFoods.filter((row) => {
+    const tmpFoods = foods.filter((row) => {
       if (
         filterQuery.title &&
         String(row.title).toLowerCase().indexOf(filterTitle) === -1
@@ -74,6 +75,11 @@ export const App = () => {
     });
     return tmpFoods;
   }, [filterQuery, foods]);
+
+  const onClickFoodAdd = () => {
+    const createdFood = [...foods, newFoods];
+    setFoods(createdFood);
+  };
 
   const handleNewFoods = (e) => {
     setNewFoods(e.target.value);
